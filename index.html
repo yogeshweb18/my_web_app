@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Download Android App</title>
+
+  <style>
+    .btn {
+      padding: 12px 22px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      background-color: #28a745;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Lemon Android App</h1>
+
+  <p>
+    After downloading:
+    <br>1. Open the file
+    <br>2. Allow “Install from this source”
+    <br>3. Install the app
+  </p>
+
+  <!-- Download anyway button (hidden by default) -->
+  <button class="btn" id="manualBtn" style="display:none;">
+    Download anyway
+  </button>
+
+  <!-- Hidden download link      version: 1.0.0+2  -->
+  <a href="app-release.apk" download id="downloadLink" style="display:none;"></a>
+
+  <script>
+    const isAndroid = /Android/i.test(navigator.userAgent);
+    const downloadLink = document.getElementById("downloadLink");
+    const manualBtn = document.getElementById("manualBtn");
+
+    if (!isAndroid) {
+      alert("This app is for Android devices only.");
+    } else {
+      // Try auto-download
+      downloadLink.click();
+
+      // Show manual button in case auto-download is blocked
+      manualBtn.style.display = "inline-block";
+
+      manualBtn.addEventListener("click", () => {
+        downloadLink.click();
+      });
+    }
+  </script>
+
+</body>
+</html>
